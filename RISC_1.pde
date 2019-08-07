@@ -2,6 +2,7 @@
 class CPU {
   String[] prog;
   int acc, pc, x, y, sp;
+  boolean H = false;
   CPU(String file) {
     prog = loadStrings(file);
   }
@@ -11,6 +12,7 @@ class CPU {
     switch(ins[0]) {
       
       case "halt":
+        H = true;
         noLoop();
         break;
       
@@ -24,6 +26,10 @@ class CPU {
         
       case "storei":
         mem[parseInt(ins[2])] = parseInt(ins[1]);
+        break;
+        
+      case "store":
+        mem[parseInt(ins[1])] = acc;
         break;
         
       case "add":
@@ -53,7 +59,18 @@ class CPU {
       case "asr":
         acc /= 2;
         break;
-      
+        
+      case "printc":
+        //placeChar(parseInt(ins[1])],parseInt(ins[2])],parseInt(ins[3])]);
+        break;
+        
+      //case "plot":
+      //  int x, y, c;
+      //  x = parseInt(ins[1]);
+      //  y = parseInt(ins[2]);
+      //  c = parseInt(ins[3]);
+      //  mem[0xA000 + ((y * w) + x)] = c;
+      //  break;
         
         
     }
@@ -77,16 +94,21 @@ class CPU {
     return dat;
   } 
   
+  void placeChar(int x, int y, int c) {
+    
+  }
+  
+  
 }
 //=================================================================================================================================================================
 
 int h, w;
 int[] mem = new int[256000];
-int scaleFactor = 4;
+int scaleFactor = 2;
 
 CPU cpu;
 
-void setup() { //<>//
+void setup() {
   size(640,480);
   h = height / scaleFactor;
   w = width / scaleFactor;
@@ -98,7 +120,7 @@ void setup() { //<>//
 void draw() {
   background(255);
   scale(scaleFactor);
-  cpu.clock();
+  for(int i = 0; i < 1000 & !cpu.H; i++) cpu.clock();
   drawScreen();
 }
 
@@ -114,3 +136,11 @@ void drawScreen() {
     }
   }
 }
+
+
+
+
+
+
+
+
