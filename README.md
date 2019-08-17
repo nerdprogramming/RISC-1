@@ -21,3 +21,9 @@
 | Take The Floor Of The Square Root Of A | sqrt | Address | - |
 | Shift A Right Once | asr | - | - |
 | Shift A Left Once | asl | - | - |
+
+## Assembler Directives
+
+- #include - Include A File Into The Assembly, Included File Begins At The End Of The Last Included File
+- #def - Define A Label, and associate it with a Value,
+- #mark - Mark a jump point, same as a regular label, but the value is the line number, 0 indexxed
